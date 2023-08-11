@@ -14,6 +14,9 @@
     <h2>C++ Online IDE</h2>
     <textarea id="editor"></textarea>
     <button onclick="compileAndRun()">Compile & Run</button>
+    <h3>Input:</h3>
+    <textarea id="input"></textarea>
+    <h3>Output:</h3>
     <div id="output"></div>
 
     <script>
@@ -38,9 +41,10 @@
 
         function compileAndRun() {
             var code = editor.getValue();
+            var input = document.getElementById("input").value;
 
-            // Compile and run C++ code
-            var result = Module.ccall('runCode', 'string', ['string'], [code]);
+            // Compile and run C++ code with input
+            var result = Module.ccall('runCode', 'string', ['string', 'string'], [code, input]);
 
             document.getElementById("output").textContent = result;
         }
